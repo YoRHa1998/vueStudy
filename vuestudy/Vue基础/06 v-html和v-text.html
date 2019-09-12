@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+   <span>这是用插值表达式显示的：{{ msg }}</span><br>
+   <span>这是用v-text显示的:</span><span v-text="msg"></span><br>
+   <span>这是用v-html显示的:</span><span v-html="msg"></span>
+   <!-- v-text和v-html都会覆盖标签内的值 -->
+</div>
+
+<script>
+  const vm = new Vue({
+    el:"#app",
+    data:{
+      msg:"<a href='www.baidu.com'>百度一下</a>"
+
+    },
+    methods: {
+
+    },
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+  <cpn v-show="isshow"></cpn>
+  <!-- 问题：这里的isshow会使用vue实例中的还是组件中的呢 -->
+  <!-- 答案是会使用vue实例中的，因为这个组件是属于vue实例的，所以它的作用域是在vue实例中 -->
+</div>
+
+<template id="cpn1">
+  <div>
+    <h2 v-show="isshow">我是组件</h2>
+    <!-- 问题：这里的isshow会使用哪里的呢 -->
+    <!-- 答案是会使用组件中的，因为这个标签是属于组件的 -->
+    <p>哈哈哈</p>
+  </div>
+</template>
+
+<script>
+  const vm = new Vue({
+    el:"#app",
+    data:{
+      isshow:true
+    },
+    methods: {
+
+    },
+    components:{
+      cpn:{
+        template:"#cpn1"
+      },
+      data() {
+        return {
+          isshow:false
+        }
+      },
+    }
+  })
+</script>
+</body>
+</html>

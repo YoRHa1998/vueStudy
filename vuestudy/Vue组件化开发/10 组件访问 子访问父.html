@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+  <cpn></cpn>
+</div>
+
+<template id="cpn1">
+  <div>
+    <h2>我是cpn1</h2>
+    <cpn2></cpn2>
+  </div>
+</template>
+
+<template id="cpn2">
+  <div>
+    <h2>我是cpn2</h2>
+    <button @click="btncpn2">我是cpn2的按钮</button>
+  </div>
+</template>
+
+<script>
+  const vm = new Vue({
+    el:"#app",
+    data:{
+      message:"我是vue中的message"
+    },
+    methods: {
+
+    },
+    components:{
+      cpn:{
+        template:"#cpn1",
+        data() {
+          return {
+            msg:"我是cpn1的msg"
+          }
+        },
+        components:{
+          cpn2:{
+            template:"#cpn2",
+            methods: {
+              btncpn2(){
+                console.log(this.$parent);//通过$parent方法直接访问父组件，不过这样破坏了子组件的独立性，一般不用
+                console.log(this.$parent.msg);
+
+                console.log(this.$root); //通过$root方法访问根组件
+                console.log(this.$root.message);
+                
+              }
+            },
+          }
+        }
+      }
+    }
+  })
+</script>
+</body>
+</html>

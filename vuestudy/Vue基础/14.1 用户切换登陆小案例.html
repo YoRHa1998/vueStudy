@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+  <span v-if="change">
+    <label for="user">账号登陆</label>
+    <!-- label中的for属性与input框的id绑定后，点击label可以给input框一个获取焦点状态 -->
+    <input type="text" placeholder="账号登陆" id="user">
+  </span>
+  <span v-else>
+    <label for="email">邮箱登陆</label>
+    <input type="text" placeholder="邮箱登陆" id="email">
+  </span>
+  <button @click="changeload">切换登陆方式</button>
+</div>
+
+<script>
+  const vm = new Vue({
+    el:"#app",
+    data:{
+      change:true
+    },
+    methods: {
+      changeload(){
+        this.change = !this.change
+      }
+    },
+  })
+</script>
+</body>
+</html>

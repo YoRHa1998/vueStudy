@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+  <a v-bind:href="ahref">百度一下</a>
+  <img :src="imgurl" alt="使用语法糖的写法">
+  <!-- 使用v-bind可以动态绑定属性值，可以使用冒号的形式来缩写 -->
+</div>
+
+<script>
+  const vm = new Vue({
+    el:"#app",
+    data:{
+      ahref:"http://www.baidu.com",
+      imgurl:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3949392649,3333313847&fm=26&gp=0.jpg"
+    },
+    methods: {
+
+    },
+  })
+</script>
+</body>
+</html>

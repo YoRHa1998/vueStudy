@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../lib/vue2.6.10.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{ msg }}</h1>
+    </div>
+    <!-- 声明式编程 -->
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                msg: "Hello Vue!"
+                // 响应式：数据发生变化时，页面的数据也会跟着变化
+            }
+        })
+        // el,data都是以对象类型传入vm这个实例的参数
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+  <cpn></cpn>
+</div>
+
+<template id="cpn1">
+  <!-- 组件中只能有一个根元素，所以所有的组件最外面都需要包裹一个div -->
+  <div>
+      <h2>{{ msg }}</h2>
+      <h3>这是内容，啊哈哈哈</h3>
+  </div>
+</template>
+
+<script>
+  const vm = new Vue({
+    el:"#app",
+    data:{
+
+    },
+    methods: {
+
+    },
+    components:{
+      'cpn':{
+        template:'#cpn1',
+        // 模板中的data是一个函数，并且，函数中必须返回一个对象，数据就写在这个返回的对象中
+        // 使用return的理由：每次创建组件实例时，都会返回一个新的对象，
+        // 使每一个组件实例都有自己独立的data，而不会出现共用一个data相互影响的情况
+        data() {
+          return {
+            msg:"这是data中的标题"
+          }
+        },
+      }
+    }
+  })
+</script>
+</body>
+</html>

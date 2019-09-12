@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+  <h2 :style="{fontSize:size,color:finalcolor}">{{ msg }}</h2>
+  <h2 :style="getstyle()">{{ msg }}</h2>
+  <!-- 和动态绑定class一样，动态绑定style也可以通过对象的方式设置style的值{key(css属性名):value（属性值}，
+  同样的，如果代码太长，也可以把对象设置为一个方法来调用-->
+  <h2 :style="[finalstyle]">{{ msg }}</h2>
+  <!-- 同样的，动态绑定style也可以用数组的方式设置style的值 -->
+</div>
+
+<script>
+  const vm = new Vue({
+    el:"#app",
+    data:{
+      msg:"hello",
+      size:'50px',
+      finalcolor:'red',
+      finalstyle:{
+        color:'red'
+      }
+    },
+    methods: {
+      getstyle(){
+        return {fontSize:this.size,color:this.finalcolor}
+      }
+    },
+  })
+</script>
+</body>
+</html>

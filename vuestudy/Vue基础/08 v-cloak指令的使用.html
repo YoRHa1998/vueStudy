@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+  <style>
+    [v-cloak]{
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app">
+  <h2 v-cloak>{{ msg }}</h2>
+  <!-- 当v-cloak被vue解析的时候，vue会删除v-cloak指令，因此，将v-cloak的display设为none，就能
+  在未加载的时候隐藏元素，在vue加载完毕的时候显示元素，从而解决了网速慢时的闪烁问题
+  -->
+</div>
+
+<script>
+  const vm = new Vue({
+    el:"#app",
+    data:{
+      msg:"hello"
+    },
+    methods: {
+
+    },
+  })
+</script>
+</body>
+</html>

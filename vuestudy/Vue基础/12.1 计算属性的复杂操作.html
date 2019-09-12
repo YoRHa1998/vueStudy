@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <ul>
+      <li v-for="item in books" ::key="item.id">{{ item }}</li>
+    </ul>
+    <h2>总价格:{{ totalPrice }}</h2>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        books: [{
+            id: 001,
+            name: "数据库概论",
+            price: 100
+          },
+          {
+            id: 002,
+            name: "ERP概论",
+            price: 123
+          },
+          {
+            id: 003,
+            name: "JAVA概论",
+            price: 43
+          },
+          {
+            id: 004,
+            name: "Python概论",
+            price: 123
+          }
+        ]
+      },
+      methods: {
+
+      },
+      computed: {
+        totalPrice() {
+          let result = 0
+          for (let i = 0; i < this.books.length; i++) {
+            result += this.books[i].price
+          }
+          return result
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../lib/vue2.6.10.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>当前的数字为：{{ msg }}</h1>
+        <button @click="add">+1</button>
+        <!-- @为v-on:的语法糖（简写） -->
+        <button @click="sub">-1</button>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                msg: 0
+            },
+            methods: {
+                add() {
+                    this.msg++
+                },
+                sub() {
+                    this.msg--
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

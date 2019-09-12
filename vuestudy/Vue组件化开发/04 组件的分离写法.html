@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <mycpn1></mycpn1>
+    <mycpn2></mycpn2>
+  </div>
+
+  <!-- 使用template标签来讲组件分离出去，而且这样的好处是简洁、有代码提示，通过id绑定到Vue.component中 -->
+  <template id="cpn1">
+    <div>
+      <h2>这是组件1</h2>
+      <h3>这是组件1的内容，哈哈哈</h3>
+      <h3>这是组件1的内容，呵呵呵</h3>
+    </div>
+  </template>
+
+  <template id="cpn2">
+    <div>
+      <h2>这是组件2</h2>
+      <h3>这是组件2的内容，哈哈哈</h3>
+      <h3>这是组件2的内容，呵呵呵</h3>
+    </div>
+  </template>
+
+  <script>
+    // 用分离写法注册全局组件
+    Vue.component('mycpn1', {
+      template: "#cpn1"
+      //通过id来进行绑定
+    })
+
+    const vm = new Vue({
+      el: "#app",
+      data: {
+
+      },
+      methods: {
+
+      },
+      components: {
+        //通过分离组件来注册局部组件
+        'mycpn2': {
+          template:"#cpn2"
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

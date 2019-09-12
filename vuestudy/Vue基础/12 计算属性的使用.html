@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+  <h2>这是普通写法：{{ firstName + ' ' + lastName}}</h2>
+  <h2>这是普通写法：{{ firstName }} {{ lastName }}</h2>
+  <!-- 普通写法 -->
+  <h2>这是使用方法的写法：{{ getfullName() }}</h2>
+  <!-- 这是使用方法的写法 -->
+  <h2>这是使用计算属性的写法：{{ fullName }}</h2>
+  <!-- 使用计算属性的写法 -->
+
+  <!-- 计算属性和方法的对比：计算属性会有一个内部的缓存，在执行多次相同的代码时只会调用一次，
+  而方法每次都会重新执行，对此之下计算属性的性能要比方法的性能要高 -->
+</div>
+
+<script>
+  const vm = new Vue({
+    el:"#app",
+    data:{
+      firstName:"zhong",
+      lastName:"leijain"
+    },
+    methods: {
+      getfullName(){
+        return this.firstName + ' ' + this.lastName
+      }
+    },
+    computed: {
+      fullName(){
+        return this.firstName + ' ' +this.lastName
+      }
+      // 计算属性是写为一个方法
+    },
+  })
+</script>
+</body>
+</html>

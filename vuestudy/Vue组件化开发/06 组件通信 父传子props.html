@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+  <mycpn  :cmsg="msg" :cmovies="movies"></mycpn>
+  <!-- 第三步 在使用的标签名中用v-bind绑定要使用的值-->
+</div>
+
+<template id="cpn1"> 
+  <div>
+    <!-- 第四步 使用传过来的值 -->
+    <h2>{{ cmsg }}</h2>
+    <ul>
+      <li v-for="item in cmovies">{{ item }}</li>
+    </ul>
+  </div>
+</template>
+
+<script>
+  const vm = new Vue({
+    el:"#app",
+    data:{
+      msg:"hello",
+      movies:['火影','复联','死神']
+    },
+    components:{//第一步 定义组件
+      'mycpn':{
+        template:"#cpn1",
+        //第二步 设置props
+        // props:['cmsg','cmovies']   第一种写法：数组写法 不过不太好，看起来不太舒服
+        // 第二种写法：对象写法
+        props:{
+          //1.可以进行一些类型限制
+          // cmovies:Array,
+          // cmsg:String
+
+          //2.也可以设置一些默认值以及必传值
+          cmsg:{
+            type:String,//type用来设置类型限制
+            default:'这是默认值',//default用来设置默认值
+            required:true //required用来设置必传值，一旦设置的required，标签中就必须有传这个值，否则报错
+          },
+          cmovies:{
+            type:Array,  //设置类型
+            default(){  //注意：当类型限制为 对象/数组 时，设置默认值必须用一个方法来返回,否则会报错
+              return []
+            }
+          }
+        }
+      }
+    }
+  })
+</script>
+</body>
+</html>

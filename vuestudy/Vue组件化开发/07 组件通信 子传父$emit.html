@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+  <cpn @outclick="inclick"></cpn>
+  <!-- 第四步 在父组件使用的标签里通过v-on来接收这个自定义事件，并在父组件创建一个用于执行的方法 -->
+  <!-- 这里并没有写参数是因为它会自动传一个来自子组件的参数，就和浏览器事件不写参数会传一个event一样 -->
+</div>
+
+<template id="cpn1">
+  <div>
+    <button v-for="item in list" @click="btnclick(item)">{{ item.name }}</button>
+    <!-- 第二步 创建组件内的点击事件 -->
+  </div>
+</template>
+
+<script>
+  const vm = new Vue({
+    el:"#app",
+    data:{
+
+    },
+    methods: {
+      //第五步 编写最终执行的方法
+      inclick(item){//这里接受的参数是自动传递进来的来自子组件的参数
+        console.log('从子组件接收的方法',item)
+      }
+    },
+    components:{
+      cpn:{//第一步 创建一个组件
+        template:'#cpn1',
+        data() {
+          return {
+            list:[
+              {id:"aaa",name:"热门推荐"},
+              {id:"bbb",name:"手机专区"},
+              {id:"ccc",name:"家电专区"},
+              {id:"ddd",name:"电器专区"}
+            ]
+          }
+        },
+        methods: {
+          //第三步 在创建的点击事件中通过this.$emit()方法发射一个自定义事件
+          btnclick(item){
+            this.$emit("outclick",item)//第一个参数为自定义事件的名字，第二个参数为子组件要传递的参数
+          }
+        },
+      }
+    }
+  })
+</script>
+</body>
+</html>

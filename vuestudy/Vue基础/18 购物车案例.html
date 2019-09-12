@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../css/18 购物车案例.css">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>购物车案例</title>
+</head>
+<body>
+  <div id="app">
+    <div v-if="list.length">
+    <table>
+      <thead>
+        <th></th>
+        <th>书籍名称</th>
+        <th>出版日期</th>
+        <th>价格</th>
+        <th>购买数量</th>
+        <th>操作</th>
+      </thead>
+      <tbody>
+        <tr v-for="(books,index) in list">
+          <td>{{ books.id }}</td>
+          <td>{{ books.name }}</td>
+          <td>{{ books.date }}</td>
+          <td>{{ books.price | showPrice }}</td>
+          <!-- 这里使用了一个过滤器，用 |过滤器名 来使用，前面的books.price会被当做参数传给过滤器 -->
+          <td>
+            <button @click="sub(index)"  :disabled="books.count <=1">-</button>
+            <!-- button标签的disabled属性：当为true时，按钮变为不可点击状态，为false时变为可点击状态 -->
+            {{ books.count }}
+            <button @click="add(index)">+</button>
+          </td>
+          <td>
+            <button @click="removeHandle(index)">移除</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <span>总价：{{ fullPrice | showPrice}}</span>
+  </div>
+  <div v-else>
+    <h2>购物车为空！</h2>
+  </div>
+  </div>
+
+  <script src="../js/18 购物车案例.js"></script>
+  <!-- script标签放在head中会导致页面还没渲染完就加载js，导致找不到el控制的div -->
+</body>
+</html>

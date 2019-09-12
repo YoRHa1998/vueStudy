@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+  <!-- 1.文本框 -->
+  <input type="text" v-model="msg">
+  <h3>{{ msg }}</h3>
+
+  <!-- 2.单选框 -->
+  <input type="radio" v-model="sex" value="男">
+  <!-- 当使用v-model绑定radio时，可以不写name也可以实现两个radio互斥 -->
+  <input type="radio" v-model="sex" value="女">
+  <h3>你现在选择的性别是：{{ sex }}</h3>
+
+  <!-- 3.复选框 -->
+  <!-- 3.1 单个复选框 对应一个boolean值-->
+  <label for="agree">
+  <input type="checkbox" id="agree" v-model="isagree">同意协议
+  </label>
+  <button :disabled="!isagree">下一步</button><br>
+
+  <!-- 3.2 多个复选框 对应一个数组 -->
+  <input type="checkbox" v-model="animations" value="火影忍者">火影忍者
+  <input type="checkbox" v-model="animations" value="海贼王">海贼王
+  <input type="checkbox" v-model="animations" value="死神">死神
+  <input type="checkbox" v-model="animations" value="凉宫春日的忧郁">凉宫春日的忧郁
+  <h3>您选择的动画是：{{ animations }}</h3><br>
+
+  <!-- bonus 值绑定的用法 动态绑定value值 -->
+  <label :for="item" v-for="item in hobbites">
+    <input type="checkbox" :value="item" :id="item" v-model="hobbit">{{ item }}
+  </label>
+  <h2>这是用值绑定的方式写的：{{ hobbit }}</h2>
+
+  <!-- 4.单选的select -->
+  <select name="fruit" v-model="fruit">
+    <option value="苹果">苹果</option>
+    <option value="香蕉">香蕉</option>
+    <option value="菠萝">菠萝</option>
+    <option value="百香果">百香果</option>
+  </select>
+  <h2>您选择的水果是：{{ fruit }}</h2>
+
+  <!-- 4.2 多选的select -->
+  <select name="fruit" v-model="fruits" multiple>
+      <option value="苹果">苹果</option>
+      <option value="香蕉">香蕉</option>
+      <option value="菠萝">菠萝</option>
+      <option value="百香果">百香果</option>
+    </select>
+    <h2>您选择的水果是：{{ fruits }}</h2>
+</div>
+
+<script>
+  const vm = new Vue({
+    el:"#app",
+    data:{
+      msg:"hello",
+      sex:"男",
+      isagree:false,
+      animations:[],
+      fruit:"苹果",
+      fruits:[],
+      hobbit:[],
+      hobbites:["篮球","足球","羽毛球","高尔夫球"]
+    },
+    methods: {
+
+    },
+  })
+</script>
+</body>
+</html>

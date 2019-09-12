@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+  <!-- 第三步  使用组件-->
+  <!-- <my-cpn></my-cpn>
+  <my-cpn></my-cpn>
+  <my-cpn></my-cpn> -->
+  <cpn></cpn>
+</div>
+
+<script>
+  // 第一步 创建组件构造器
+  const cpn1 = Vue.extend({
+    //过去版本的注册方式
+    template:`
+    <div>
+      <h2>这是组件的标题</h2>
+      <h3>这是组件的内容 哈哈哈</h3>
+      <h3>这是组件的内容 呵呵呵</h3>
+    </div>
+    `
+    // 使用``创建字符串可以直接换行
+  })
+
+  // 第二步  注册组件
+  // Vue.component('my-cpn',cpn1)  //这样注册的是全局组件
+
+  const vm = new Vue({
+    el:"#app",
+    data:{
+
+    },
+    methods: {
+
+    },
+    components: {//这样注册的是局部组件
+      cpn: cpn1//组件的标签名如果用驼峰命名的话，在标签中进行数据绑定的时候，需要改成小写并且单词连接处用-连接
+    }
+  })
+</script>
+</body>
+</html>

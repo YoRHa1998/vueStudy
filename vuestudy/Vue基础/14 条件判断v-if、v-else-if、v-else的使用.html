@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+  <h2 v-if="isshow">{{ msg }}</h2>
+  <h2 v-else>v-if为false时显示我</h2>
+  <button @click="change">按钮</button>
+  <br>
+  <input type="text" v-model="score">
+  <h3 v-if="score>=90">优秀</h3>
+  <h3 v-else-if="score>=80">良好</h3>
+  <h3 v-else-if="score>=60">及格</h3>
+  <h3 v-else>不及格</h3>
+  <!-- 使用计算属性 -->
+  <h4>{{ result }}</h4>
+</div>
+
+<script>
+  const vm = new Vue({
+    el:"#app",
+    data:{
+      msg:"hello",
+      isshow:true,
+      score:90
+    },
+    methods: {
+      change(){
+        this.isshow = !this.isshow
+      }
+    },
+    computed: {
+      result(){
+        let message="";
+        if(this.score>=90){
+          message = "优秀"
+        }else if(this.score>=80){
+          message = "良好"
+        }else if(this.score>=60){
+          message = "及格"
+        }else{
+          message = "不及格"
+        }
+        return message
+      }
+    },
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+  <mycpn1></mycpn1>
+  <mycpn2></mycpn2>
+</div>
+
+<script>
+  //之前的写法 是调用Vue,extend()函数来创建组件构造器，而在语法糖中，这一步可以被省略
+
+  Vue.component('mycpn1',{//定义全局组件可以直接写在Vue.component()中
+    template:`
+    <div>
+      <h2>这是组件1</h2>
+      <h3>这是组件1的内容，哈哈哈</h3>
+      <h3>这是组件1的内容，呵呵呵</h3>
+    </div>
+    `
+  })
+
+  const vm = new Vue({
+    el:"#app",
+    data:{
+
+    },
+    methods: {
+
+    },
+    components:{
+      'mycpn2':{//定义局部组件的时候，也是直接写在里面
+        template:`
+        <div>
+          <h2>这是组件2</h2>
+          <h3>这是组件2的内容，哈哈哈</h3>
+          <h3>这是组件2的内容，呵呵呵</h3>
+        </div>
+        `
+      }
+    }
+  })
+</script>
+</body>
+</html>

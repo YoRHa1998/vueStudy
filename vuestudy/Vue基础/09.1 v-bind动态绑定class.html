@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <style>
+  .red{
+    color:red;
+  }
+  .big{
+    font-size: 1em
+  }
+  .font{
+    font-family: 楷体
+  }
+  </style>
+  <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+  <h2 class="font" v-bind:class="{red:isred,big:isbig}">{{ message }}</h2>
+  <!-- 可以通过v-bind指令来动态的绑定class，同时可以设置class的值为一个对象,以{类名：boolean}的形式，然后通过控制
+  该布尔值来实现控制是否加载该类,同时在使用动态绑定类的时候还能够使用普通方式添加类，两者并不会冲突 -->
+  <h2 class="font" v-bind:class="getclasses()">{{ message }}</h2>
+  <!-- 我们还可以将这个对象写到methods中，这样做的好处是精简了代码长度，效果和上面是一样的，不过要记得在methods中
+  调用data中的数据时需要加上this -->
+  <h2 class="font" v-bind:class="['red','big']">{{ message }}</h2>
+  <!-- 我们同样可以把类的值设为一个数组，用法和对象差不多，但是用的时候比较少 -->
+  <button @click="btnclick">按钮</button>
+</div>
+
+<script>
+  const vm = new Vue({
+    el:"#app",
+    data:{
+      message:"hello",
+      isred:true,
+      isbig:true
+    },
+    methods: {
+      btnclick(){
+        this.isred = !this.isred
+        this.isbig = !this.isbig
+      },
+      getclasses(){
+        return {red:this.isred,big:this.isbig}
+      }
+    },
+  })
+</script>
+</body>
+</html>

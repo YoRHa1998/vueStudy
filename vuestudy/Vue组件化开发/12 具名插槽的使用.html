@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+  <cpn>
+    <!-- 使用具名插槽只需要在组件标签中加上一个slot属性，通过slot属性来定位使用的是哪一个插槽 -->
+    <span slot="left">任务栏</span>
+    <span slot="center">主页</span>
+    <span slot="right">返回栏</span>
+  </cpn>
+</div>
+
+<template id="cpn1">
+  <div>
+    <!-- 在使用具名插槽的时候，只需要在slot标签里加上一个name属性 -->
+    <slot name="left"><span>左边</span></slot>
+    <slot name="center"><span>中间</span></slot>
+    <slot name="right"><span>右边</span></slot>
+  </div>
+</template>
+
+<script>
+  const vm = new Vue({
+    el:"#app",
+    data:{
+
+    },
+    methods: {
+
+    },
+    components:{
+      cpn:{
+        template:"#cpn1"
+      }
+    }
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+  <!-- 1.没有参数的情况 -->
+  <button @click="btn1click">按钮1</button>
+  <!-- 2.函数需要传参但是并没有传参,如果有写小括号，此时参数将为undefind，如果没有写小括号，
+  此时浏览器会将event对象当做参数传递过来 -->
+  <button @click="btn2click">按钮2</button>
+  <!-- 3. 当函数需要两个参数，且第二个参数需要我们传递event事件时，我们可以用$event传递event对象-->
+  <button @click="btn3click(123,$event)">按钮3</button>
+</div>
+
+<script>
+  const vm = new Vue({
+    el:"#app",
+    data:{
+      msg:"hello"
+    },
+    methods: {
+      btn1click(){
+        console.log(this.msg);
+      },
+      btn2click(event){
+        console.log('=====',event);       
+      },
+      btn3click(abc,event){
+        console.log('-----',abc,event);
+        
+      }
+    },
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+  <!-- 作用域插槽的作用就是一个可以获取子组件data或props值的插槽 -->
+
+  <cpn>
+    <!-- 在组件标签中用一个template标签来接受animations -->
+    <!-- 在template标签中用 slot-scope 来获取组件插槽中传过来的值 -->
+    <template slot-scope="ani">
+      <!-- 接着就可以在父组件中使用子组件的值了 -->
+      <span v-for="item in ani.animate">{{ item }} - </span>
+    </template>
+    <!-- 现在是整个template标签来替换插槽 -->
+
+  </cpn>
+</div>
+
+<template id="cpn1">
+  <div>
+    <h2>我是组件</h2>
+    <!-- 作用域插槽的用法 第一步：在插槽中定义一个自定义属性来绑定要获取的data中的值 -->
+    <slot :animate="animations">
+      <ul>
+        <li v-for="item in animations">{{ item }}</li>
+      </ul>
+    </slot>
+  </div>
+</template>
+
+<script>
+  const vm = new Vue({
+    el:"#app",
+    data:{
+      
+    },
+    methods: {
+
+    },
+    components:{
+      cpn:{
+        template:"#cpn1",
+        data() {
+          return {
+            animations:['火影忍者','海贼王','死神','刀剑神域']
+          }
+        },
+      }
+    }
+  })
+</script>
+</body>
+</html>

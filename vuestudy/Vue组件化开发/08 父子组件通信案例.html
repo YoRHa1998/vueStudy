@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+  <cpn :pnum1="num1" :pnum2="num2" @num1change="num1change" @num2change="num2change"></cpn>
+</div>
+
+<template id="cpn1">
+  <div>
+    <h2>props:{{ pnum1 }}</h2>
+    <h2>data:{{ dnum1 }}</h2>
+    <!-- <input type="text" v-model="pnum1"  不建议直接修改props里面的值> -->
+    <!-- <input type="text" v-model="dnum1">  重新在data中定义一个属性用来接收props中的值，推荐做法-->
+    <input type="text" :value="dnum1" @input="num1input">
+    <!-- v-model的本质 监听input事件-->
+    <h2>props:{{ pnum2 }}</h2>
+    <h2>data:{{ dnum2 }}</h2>
+    <!-- <input type="text" v-model="pnum2"> -->
+    <input type="text" :value="dnum2" @input="num2input">
+  </div>
+</template>
+
+<script>
+  const vm = new Vue({
+    el:"#app",
+    data:{
+      num1:1,
+      num2:0
+    },
+    methods: {
+      num1change(value){//接收来自子组件的值
+        this.num1 = parseFloat(value)
+        //用子组件的值修改父组件的值，因为子组件里做了类型限制，而默认值是string,所以这里要做一个类型转化
+      },
+      num2change(value){
+        this.num2 = parseFloat(value)
+      }
+    },
+    components:{
+      cpn:{
+        template:"#cpn1",
+        props:{
+          pnum1:Number,
+          pnum2:Number
+        },
+        data() {
+          return {
+            dnum1:this.pnum1,
+            dnum2:this.pnum2
+          }
+        },
+        methods: {
+          num1input(event){//自动传入的event事件
+           this.dnum1 = event.target.value  //通过event事件获取到输入的数据
+           this.$emit('num1change',this.dnum1)  //通过$emit()方法向父组件发送修改后的值
+          },
+          num2input(event){//自动传入的event事件
+          this.dnum2 = event.target.value
+          this.$emit('num2change',this.dnum2)
+          }
+        },
+      }
+    }
+  })
+</script>
+</body>
+</html>

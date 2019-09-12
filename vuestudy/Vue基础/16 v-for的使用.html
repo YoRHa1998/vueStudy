@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+  <!-- 遍历数组 -->
+  <!-- 如果要获取下标，则在后面再加一个值 -->
+  <ul>
+    <li v-for="movie in movies">{{ movie }}</li>
+  </ul>
+  <ul>
+    <li v-for="(movie,index) in movies">{{ movie }}-{{ index }}</li>
+  </ul>
+  <!-- 遍历对象 -->
+  <!-- 遍历对象的时候，如果只有一个值，则遍历出来的为value值，如果需要遍历出kry值，则在后面再加一个值
+  第一个值为value，第二个值为key -->
+  <!-- 遍历对象如果也要获取下标的话，一样在后面加上第三个值 -->
+  <ul>
+    <li v-for="animate in animations">{{ animate }}</li>
+  </ul>
+  <ul>
+    <li v-for="(animate,key) in animations">{{ key }}:{{ animate }}</li>
+  </ul>
+  <ul>
+    <li v-for="(animate,key,index) in animations">{{ key }}:{{ animate }}:{{ index }}</li>
+  </ul>
+</div>
+
+<script>
+  const vm = new Vue({
+    el:"#app",
+    data:{
+      movies:["海王","盗梦空间","大闹天宫"],
+      animations:{
+        name:"火影忍者",
+        age:20,
+        look:"good"
+      }
+    },
+    methods: {
+
+    },
+  })
+</script>
+</body>
+</html>

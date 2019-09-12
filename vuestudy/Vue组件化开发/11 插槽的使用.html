@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+<!-- 1.直接在模板中需要使用插槽的地方加入一个slot标签 -->
+<!-- 2.当需要使用插槽的时候，在组件标签中直接写出需要展示的东西，这些东西会被替换到插槽的位置 -->
+<!-- 3.插槽的默认值：直接在slot标签中定义元素，如果没有使用插槽的话会显示默认值，如果有使用插槽，默认值会被替换为组件标签中的元素 -->
+
+<div id="app">
+  <cpn><h2>i use slot</h2></cpn>
+  <cpn>
+    <h2>我是1</h2>
+    <p>我是p</p>
+    <i>我是i</i>
+  </cpn>
+  <!-- 当在组件标签中写了多个元素时，如果只有一个插槽，会被一起替换到插槽中 -->
+  <cpn><h3>i usr slot too</h3></cpn>
+  <cpn></cpn>
+</div>
+
+<template id="cpn1">
+  <div>
+    <h2>我是组件</h2>
+    <slot><button>这是插槽的默认按钮</button></slot>
+    <!-- 直接加入slot标签定义一个插槽 -->
+    <!-- 插槽中的button元素为插槽的默认值 -->
+  </div>
+</template>
+
+<script>
+  const vm = new Vue({
+    el:"#app",
+    data:{
+
+    },
+    methods: {
+
+    },
+    components:{
+      cpn:{
+        template:"#cpn1"
+      }
+    }
+  })
+</script>
+</body>
+</html>

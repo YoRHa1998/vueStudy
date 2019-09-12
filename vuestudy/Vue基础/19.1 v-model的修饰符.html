@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+  <!-- 1.  .lazy 当用户敲回车或者点击外面(失去焦点)时，修改才会生效 -->
+  <input type="text" v-model.lazy="msg">
+  <h2>{{ msg }}</h2>
+
+  <!-- 2.  .number  使文本框中输入的数据变为number类型,默认v-model会使数据变成string类型-->
+  <input type="number" v-model.number="num">
+  <h2>{{ num }}---{{ typeof num }}</h2>
+
+  <!-- 3.  .trim()  去除字符串左右两边的空格 -->
+  <input type="text" v-model.trim()="msg">
+  <h2>{{ msg }}</h2>
+</div>
+
+<script>
+  const vm = new Vue({
+    el:"#app",
+    data:{
+      msg:'hello',
+      num:0
+    },
+    methods: {
+
+    },
+  })
+</script>
+</body>
+</html>

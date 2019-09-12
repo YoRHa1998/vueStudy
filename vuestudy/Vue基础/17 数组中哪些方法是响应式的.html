@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+  <ul>
+    <li v-for="item in letters" >{{ item }}</li>
+  </ul>
+  <button @click="btnclick"></button>
+</div>
+
+<script>
+  const vm = new Vue({
+    el:"#app",
+    data:{
+      letters:['A','B','C','D'],
+    },
+    methods: {
+      btnclick(){
+        // 有响应式效果的方法
+        // 1.push方法 在数组末尾添加一个元素(可以一下添加多个元素)
+        // this.letters.push("aaa")
+
+        // 2.pop()  删除最后一位的元素
+        // this.letters.pop()
+
+        // 3.shift()  删除数组中的第一个元素
+        // this.letters.shift()
+
+        // 4.unshift()  在数组最前面添加元素(可以一下添加多个元素)
+        // this.letters.unshift('aaa')
+
+        // 5.splice()  可以插入元素/删除元素/替换元素
+        // splice()  
+        // 第一个参数代表从哪个元素开始
+        // 第二个参数，如果是
+        // 删除元素：就代表删除几位元素，如果不写默认删除后面所有变得元素 
+        // this.letters.splice(1,2)为删除第一位之后的两个元素
+        // 替换元素：第二个参数就代表要替换及格元素，在后面写上要替换的元素 splice(1,2,'m','n')代表替换第一位之后的两个元素为m,n
+        // 插入元素：第二个参数就写0，之后的参数就写要插入的元素 splice(1,0,'a','b','c')代表在第一个元素后面插入三个元素
+        // this.letters.splice()
+
+        // 6.sort 用于排序
+        // this.letters.sort()
+
+        // 7.reverse() 用于反转数组
+        // this.letters.reverse()
+
+        // 2.注意：通过索引的方式修改数组中的数据(没有响应式的效果)
+        // this.letters[0] = 'bbbb'
+      }
+    },
+  })
+</script>
+</body>
+</html>

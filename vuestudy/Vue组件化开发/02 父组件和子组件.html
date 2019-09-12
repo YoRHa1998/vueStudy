@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+  <mycpn2></mycpn2>
+</div>
+
+<script>
+  const cpn1 = Vue.extend({//子组件
+    template:`
+    <div>
+      <h2>这是组件1</h2>
+      <h3>这是组件1的内容，哈哈哈</h3>
+      <h3>这是组件1的内容，呵呵呵</h3>
+    </div>
+    `
+  })
+
+  const cpn2 = Vue.extend({//父组件
+    //在父组件里调用子组件
+    template:`
+    <div>
+      <h2>这是组件2</h2>
+      <h3>这是组件2的内容，哈哈哈</h3>
+      <h3>这是组件2的内容，呵呵呵</h3>
+      <mycpn1></mycpn1>
+    </div>
+    `,
+    components:{
+      mycpn1:cpn1
+      //在组件二里面定义组件一，这样组件二就成为了父组件，组件一件是子组件
+    }
+  })
+
+  //root组件
+  const vm = new Vue({
+    el:"#app",
+    data:{
+
+    },
+    methods: {
+
+    },
+    components:{
+      mycpn2:cpn2
+      //在Vue实例中只需注册组件二（父组件）就行，组件一（子组件）在父组件中注册
+    }
+  })
+</script>
+</body>
+</html>

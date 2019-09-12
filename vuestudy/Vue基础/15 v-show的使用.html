@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+  <h2 v-if="isshow">{{ msg }}</h2>
+  <h2 v-show="isshow">{{ msg }}</h2>
+  <!-- 区别v-if是直接消失 v-show则是在元素中加了一个display：none属性 -->
+  <button @click="change">按钮</button>
+</div>
+
+<script>
+  const vm = new Vue({
+    el:"#app",
+    data:{
+      msg:"hello",
+      isshow:true
+    },
+    methods: {
+      change(){
+        this.isshow = !this.isshow
+      }
+    },
+  })
+</script>
+</body>
+</html>

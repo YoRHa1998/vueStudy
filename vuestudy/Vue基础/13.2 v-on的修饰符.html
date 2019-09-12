@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+  <!-- 1.stop 阻止事件的冒泡 -->
+  <div @click="divclick">
+    =======
+  <button @click.stop="btnclick">按钮</button>
+  </div>
+  
+  <!-- 2.prevent 阻止事件的默认行为 -->
+  <a href="www.baidu.com" @click.prevent="aclick">百度一下</a><br>
+
+  <!-- 3.keyup 监听键盘的键帽 -->
+  <input type="text" @keyup.enter="enter"><br>
+
+  <!-- 4.once 事件只执行一次 -->
+  <button @click.once="onceclick">按钮2</button>
+</div>
+
+<script>
+  const vm = new Vue({
+    el:"#app",
+    data:{
+
+    },
+    methods: {
+      btnclick(){
+        console.log("btnclick");
+      },
+      divclick(){
+        console.log("divclick");
+      },
+      aclick(){
+        console.log("aclick");
+      },
+      enter(){
+        console.log("enter");
+      },
+      onceclick(){
+        console.log("once");
+      }
+    },
+  })
+</script>
+</body>
+</html>

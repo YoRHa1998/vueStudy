@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+  <h1>{{ firstName }}</h1>
+  <h1>{{ firstName + lastName}}</h1>
+  <h1>{{ firstName}} {{ lastName }}</h1>
+  <h1>{{ number * 2 }}</h1>
+  <!-- 可以在插值表达式中写一些简单的表达式 -->
+</div>
+
+<script>
+  const vm = new Vue({
+    el:"#app",
+    data:{
+      firstName:"zhong",
+      lastName:"leijain",
+      number:100
+    },
+    methods: {
+
+    },
+  })
+</script>
+</body>
+</html>

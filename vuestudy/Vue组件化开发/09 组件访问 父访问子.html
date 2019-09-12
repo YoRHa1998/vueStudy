@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue2.6.10.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+  <cpn></cpn>
+  <cpn></cpn>
+  <cpn ref="aaa"></cpn>
+  <!-- 在标签上设置ref属性值 相当于一个id一样给$refs定位组件的位置 -->
+  <button @click="btnclick">按钮</button>
+</div>
+
+<template id="cpn1">
+  <div>
+    <h2>我是子组件</h2>
+  </div>
+</template>
+
+<script>
+  const vm = new Vue({
+    el:"#app",
+    data:{
+
+    },
+    methods: {
+      btnclick(){
+        // 第一种 通过$children来访问子组件，访问时通过下标来确定访问哪一个子组件，不常用
+        console.log(this.$children);
+        console.log(this.$children[0].msg);
+        this.$children[0].showMessage()
+        
+        // 第二种  通过$refs来访问子组件，通过在组件标签上设置一个ref属性值来确定访问哪一个子组件，一般用这种方式
+        console.log(this.$refs.aaa);
+        console.log(this.$refs.aaa.msg);
+        this.$refs.aaa.showMessage()
+        
+      }
+    },
+    components:{
+      cpn:{
+        template:"#cpn1",
+        data() {
+          return {
+            msg:"我是子组件的msg"
+          }
+        },
+        methods: {
+          showMessage() {
+            console.log(this.msg);
+          },
+        },
+      }
+    }
+  })
+</script>
+</body>
+</html>
